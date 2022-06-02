@@ -1,0 +1,173 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    margin: 1rem 0 0 0;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin: 0rem 1rem 0 1rem;
+    row-gap: .2rem;
+    max-width: 75vw;
+    height: 85%;
+}
+
+.card-holder {
+    background-color: #652e70;
+    width: 80%;
+    height: 90%;
+    margin: 0 auto 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: .05rem .05rem 10px 1px gray ;
+}
+
+.card-image{
+    text-align: center;
+    max-width: 100%;
+    height: 85%;
+}
+
+.imagen{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.card-title{
+    text-align: center;
+    color: aliceblue;
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-shadow: 0 0 3px black;
+}
+
+.game-manager-container {
+    background-color: darkgrey;
+}
+
+.game-mode{
+    margin: 1rem auto 0 auto;
+    text-align: center;
+}
+
+.chars-holder{
+    display: grid;
+    grid-template-areas: 
+    "jugador ia"
+    "cartaj cartai";
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    text-align: center;
+    margin: 1rem 0 0 0 ;
+}
+
+#elej{
+    grid-area: "jugador";
+}
+
+#elej{
+    grid-area: "ia";
+}
+
+#cartaj{
+    grid-area: "cartaj";
+}
+
+#cartai{
+    grid-area: "cartai";
+}
+
+.carta{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.char-holder{
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    justify-content: space-evenly;
+}
+
+.card-holder-preview {
+    background-color: #652e70;
+    width: 70%;
+    height: 75%;
+    margin: 1rem 0 0 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: .05rem .05rem 10px 1px gray ;
+}
+
+.card-title-prev{
+    font-size: 1rem;
+}
+
+.hide-show{
+    text-align: left;
+    align-self: center;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}
+
+.questions-holder{
+    width: 200%;
+    margin: 2rem 0 0 0;
+}
+
+.preguntas{
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0 0 0;
+    padding: 0 1rem 0 1rem;
+}
+
+form{
+    text-align: center;
+}
+
+.radio-op{
+    margin: 0 1.8rem 0 1.8rem;
+    line-height: 2rem;
+}
+
+.dropdowns-holder{
+    margin: 2rem 0 0 2rem;
+    text-align: start;
+}
+
+#label-dropdown{
+    margin: 0 2rem 0 0;
+    justify-items: start;
+}
+
+#opcion-dos{
+    margin: 1rem 0 0 2rem;
+}
+
+.boton-preguntar{
+    margin: 2rem auto 1rem auto;
+    padding: .6rem 1.2rem ;
+    text-align: center;
+    justify-self: center;
+}
+
+.form-adivinar{
+    margin: 3rem 0 0 0;
+}
+
+#adivinar-dropdown{
+    margin: 1rem 0 0 0;
+}
+
+.boton-adivina{
+    margin: 2rem auto 0 auto;
+    padding: .6rem 1.2rem ;
+    text-align: center;
+    justify-self: center;
+}

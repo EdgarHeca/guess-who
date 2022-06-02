@@ -1,0 +1,139 @@
+<div class="titulo">
+    <h1>Guess who</h1>
+</div>
+
+<div class="main-container">
+    <div id="cards-container" class="cards-container">
+        <div *ngFor="let avenger of avengers" class="card-holder">
+            <div class="card-image">
+                <img [id]="avenger.id" class="imagen" alt="" [src]="avenger.imagen" (click)="hideImage($event)">
+            </div>
+            <div class="card-title">
+                {{ avenger.nombre }}
+            </div>
+        </div>
+    </div>
+
+    <div class="game-manager-container">
+        <div class="game-mode">
+            <h2>Modo de juego:</h2><br>
+            <button id="boton-ia" (click)="startGame($event)">Usuario vs. IA</button>
+            <button id="boton-usuario" (click)="startGame($event)">Usuario vs. Usuario</button>
+            <button id="boton-reset" (click)="startGame($event)">Reiniciar</button>
+        </div>
+        <div class="chars-holder">
+            <span id="elej">Tu elección</span>
+            <span id="elei">Elección IA</span>
+            <ng-template class="char-holder" [ngIf]="charPicked == true">
+                <div id="cartaj" class="carta">
+                    <div class="card-holder-preview">
+                        <div class="card-image">
+                            <img id="char-preview" class="imagen" alt="" [src]="characterImagen">
+                        </div>
+                        <div id="card-title" class="card-title card-title-prev">
+                            {{ characterNombre }}
+                        </div>
+                    </div>
+                    <div class="hide-show">
+                        <span id="prev-on" (click)="togglePrev($event)"
+                            class="material-symbols-outlined unselectable">visibility_off</span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template class="char-holder" [ngIf]="charPickedIa == true">
+                <div id="cartai" class="carta">
+                    <div class="card-holder-preview">
+                        <div class="card-image">
+                            <img id="char-preview-ia" class="imagen" alt="" src="https://imgur.com/G8c4Jxh.jpg">
+                        </div>
+                        <div id="card-title-ia" class="card-title card-title-prev">
+                             --------- 
+                        </div>
+                    </div>
+                    <div class="hide-show">
+                        <span id="prev-on-ia" (click)="togglePrev($event)"
+                            class="material-symbols-outlined unselectable">visibility</span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngIf]="charPickedIa == true">
+                <div class="questions-holder">
+                    <h4>Tu personaje:</h4>
+                    <p>(preguntas a la IA)</p>
+                    <form class="preguntas">
+                        <label for="es" class="radio-op">
+                            <input type="radio" name="pregunta" value="Es: " id="es"
+                                (change)="radioChangeHandler($event)" checked>
+                            Es:
+                        </label>
+                        <label for="tiene" class="radio-op">
+                            <input type="radio" name="pregunta" value="Tiene: " id="tiene"
+                                (change)="radioChangeHandler($event)">
+                            Tiene:
+                        </label>
+                        <label for="usa" class="radio-op">
+                            <input type="radio" name="pregunta" value="Usa: " id="usa"
+                                (change)="radioChangeHandler($event)">
+                            Usa:
+                        </label>
+                        <label for="color" class="radio-op">
+                            <input type="radio" name="pregunta" value="Usa color: " id="color"
+                                (change)="radioChangeHandler($event)">
+                            Usa color:
+                        </label>
+                        <label for="vivo" class="radio-op">
+                            <input type="radio" name="pregunta" value="Está vivo: " id="vivo"
+                                (change)="radioChangeHandler($event)">
+                            Está vivo:
+                        </label>
+                    </form>
+                    <div class="dropdowns-holder">
+                        <form>
+                            <label id="label-dropdown" for="opcion">{{ opcion }}</label>
+                            <select class="dropdown" name="opcion" id="opcion" (change)="selectChangeHandler($event)">
+                                <option *ngFor="let ddOpcion of dropdownOpciones" [value]="ddOpcion"> {{ ddOpcion }}
+                                </option>
+                            </select>
+                            <br>
+                            <ng-template [ngIf]="auxNeeded == true">
+                                <select class="dropdown" name="opcion" id="opcion-dos"
+                                    (change)="selectAuxChangeHandler($event)">
+                                    <option *ngFor="let auxOpcion of dropdownOpcionesAux" [value]="auxOpcion"> {{
+                                        auxOpcion
+                                        }}
+                                    </option>
+                                </select>
+                            </ng-template>
+                            <br><input id="boton-preguntar" class="boton-preguntar" type="button" value="Preguntar"
+                                (click)="startActualGame()">
+                            <br>
+                            <p>Respuesta: {{ lastAnswer }}</p>
+                        </form>
+                        <form class="form-adivinar">
+                            <label id="label-adivinar" for="adivinar">¿Ya sabes quién soy?</label><br>
+                            <select class="dropdown" name="opcion2" id="adivinar-dropdown"
+                                (change)="selectGuessChangeHandler($event)">
+                                <option *ngFor="let playerGuess of playerLista" [value]="playerGuess.nombre"> {{
+                                    playerGuess.nombre
+                                    }}
+                                </option>
+                            </select>
+                            <br><input class="boton-adivina" type="button" value="Adivina" (click)="adivinar()">
+                        </form>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<input class="boton-preguntar" type="button" value="Actualizar" (click)="updateIaList()">
+<input class="boton-preguntar" type="button" value="Borrar" (click)="deleteFromIaList()">
+<input class="boton-preguntar" type="button" value="Contar" (click)="iaGuess()">
+<div>
+    <!-- <p>{{ avengers[iaCharLista.id - 1].nombre }}</p> -->
+    <select class="dropdown" name="opcion" id="adivinar-dropdown">
+        <option *ngFor="let iaCharLista of iaLista" [value]="iaCharLista"> {{ avengers[iaCharLista.id - 1].nombre }}
+        </option>
+    </select>
+</div>
