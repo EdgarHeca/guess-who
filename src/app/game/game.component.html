@@ -18,7 +18,7 @@
         <div class="game-mode">
             <h2>Modo de juego:</h2><br>
             <button id="boton-ia" (click)="startGame($event)">Usuario vs. IA</button>
-            <button id="boton-usuario" (click)="startGame($event)">Usuario vs. Usuario</button>
+            <!-- <button id="boton-usuario" (click)="startGame($event)">Usuario vs. Usuario</button> -->
             <button id="boton-reset" (click)="startGame($event)">Reiniciar</button>
         </div>
         <div class="chars-holder">
@@ -125,15 +125,4 @@
             </ng-template>
         </div>
     </div>
-</div>
-
-<input class="boton-preguntar" type="button" value="Actualizar" (click)="updateIaList()">
-<input class="boton-preguntar" type="button" value="Borrar" (click)="deleteFromIaList()">
-<input class="boton-preguntar" type="button" value="Contar" (click)="iaGuess()">
-<div>
-    <!-- <p>{{ avengers[iaCharLista.id - 1].nombre }}</p> -->
-    <select class="dropdown" name="opcion" id="adivinar-dropdown">
-        <option *ngFor="let iaCharLista of iaLista" [value]="iaCharLista"> {{ avengers[iaCharLista.id - 1].nombre }}
-        </option>
-    </select>
 </div>
